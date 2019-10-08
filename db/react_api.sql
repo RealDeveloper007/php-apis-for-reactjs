@@ -19,6 +19,10 @@ CREATE TABLE `auth_contact` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `auth_contact` (`id`, `name`, `email`, `subject`, `message`, `status`, `created_at`) VALUES
+(20,	'exam',	'diwakarsharma603@gmail.com',	'ads fsc Zcz C',	'zc adc ZCXZ czCXz ',	1,	'2019-10-08 15:40:34'),
+(21,	'exam',	'diwakarsharma603@gmail.com',	'sACX C',	'',	1,	'2019-10-08 15:41:37'),
+(22,	'exam',	'',	'',	'',	1,	'2019-10-08 15:44:30');
 
 DROP TABLE IF EXISTS `auth_tokens`;
 CREATE TABLE `auth_tokens` (
@@ -52,4 +56,4 @@ CREATE TABLE `auth_users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
--- 2019-10-06 15:29:43
+-- 2019-10-08 10:27:13
