@@ -1,0 +1,12 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|public|\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^(.*)$ index.php?$1
+
+<IfModule mod_php4.c>
+php_value upload_max_filesize 500M
+php_value max_execution_time 800
+</IfModule> 

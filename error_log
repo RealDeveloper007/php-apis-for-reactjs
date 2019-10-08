@@ -1,0 +1,7 @@
+[10-Aug-2017 12:05:48 UTC] PHP Fatal error:  Call to undefined method Ads_Model::GetAdImage2() in /home/httpawesomeafric/public_html/application/controllers/api/Ads.php on line 584
+[10-Aug-2017 12:06:06 UTC] PHP Fatal error:  Call to undefined method Ads_Model::GetAdImage2() in /home/httpawesomeafric/public_html/application/controllers/api/Ads.php on line 584
+[19-Sep-2017 10:03:54 UTC] PHP Fatal error:  Cannot use isset() on the result of a function call (you can use "null !== func()" instead) in /home/httpawesomeafric/public_html/application/controllers/api/Adsuser.php on line 75
+[19-Sep-2017 10:04:27 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/httpawesomeafric/public_html/application/controllers/api/Adsuser.php on line 76
+[29-Nov-2017 13:15:26 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/httpawesomeafric/public_html/cron_job.php on line 36
+[29-Nov-2017 13:15:27 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/httpawesomeafric/public_html/cron_job.php on line 36
+[30-Dec-2017 08:06:05 UTC] PHP Parse error:  syntax error, unexpected '{', expecting '(' in /home/httpawesomeafric/public_html/application/controllers/api/Auth.php on line 571

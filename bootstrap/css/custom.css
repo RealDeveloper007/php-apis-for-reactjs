@@ -1,0 +1,25 @@
+.userinfo {
+    width: 100%;
+    border: 1px solid #555;
+}
+.userinfo td:first-child {
+	padding: 1%;
+    background: rgba(0, 182, 255, 0.48);
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: center;
+    width: 50%;
+}
+.userinfo td:nth-child(2){
+	padding: 1%;
+    background: #ccc;
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: center;
+    width: 50%;
+}
+.userinfo tr {
+	border-bottom: 1px solid rgba(0,0,0,.075);
+}
+.userinfo tr:last-child {border-bottom:none;}
+.linklabel {font-size:90%;}
