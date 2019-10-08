@@ -46,7 +46,7 @@ Class User extends CI_Model {
         }
 	}
 
-	//Check user exists in database
+	//Check email exists in database
 	public function check_email($email)
 	{
         $this->db->where('email', $email);
@@ -58,6 +58,19 @@ Class User extends CI_Model {
         return $query->num_rows();
         }
 	}
+
+    //Check phone exists in database
+    public function check_phone($phone)
+    {
+        $this->db->where('phone', $phone);
+        $this->db->from('auth_users'); 
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+        return $query->num_rows();
+        } else {
+        return $query->num_rows();
+        }
+    }
 
 	//User login function
 	public function user_login($email,$password)

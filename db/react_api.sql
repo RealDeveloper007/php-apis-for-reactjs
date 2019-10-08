@@ -22,7 +22,8 @@ CREATE TABLE `auth_contact` (
 INSERT INTO `auth_contact` (`id`, `name`, `email`, `subject`, `message`, `status`, `created_at`) VALUES
 (20,	'exam',	'diwakarsharma603@gmail.com',	'ads fsc Zcz C',	'zc adc ZCXZ czCXz ',	1,	'2019-10-08 15:40:34'),
 (21,	'exam',	'diwakarsharma603@gmail.com',	'sACX C',	'',	1,	'2019-10-08 15:41:37'),
-(22,	'exam',	'',	'',	'',	1,	'2019-10-08 15:44:30');
+(22,	'exam',	'',	'',	'',	1,	'2019-10-08 15:44:30'),
+(23,	'exam',	'diwakarsharma603@gmail.com',	'subject',	' bcb cb',	1,	'2019-10-08 19:15:53');
 
 DROP TABLE IF EXISTS `auth_tokens`;
 CREATE TABLE `auth_tokens` (
@@ -38,22 +39,18 @@ CREATE TABLE `auth_tokens` (
 DROP TABLE IF EXISTS `auth_users`;
 CREATE TABLE `auth_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `password` varchar(200) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `phone` varchar(15) DEFAULT NULL,
-  `dob` varchar(20) DEFAULT NULL,
+  `password` varchar(200) NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `phone` bigint(20) DEFAULT NULL,
   `image` varchar(200) DEFAULT NULL,
-  `city` varchar(20) DEFAULT NULL,
-  `country` varchar(20) DEFAULT NULL,
-  `lat` varchar(20) DEFAULT NULL,
-  `long` varchar(20) DEFAULT NULL,
   `status` varchar(10) NOT NULL,
   `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+INSERT INTO `auth_users` (`id`, `email`, `password`, `full_name`, `phone`, `image`, `status`, `created_on`) VALUES
+(2,	'superadmin@demo.com',	'e10adc3949ba59abbe56e057f20f883e',	'Andrew',	4574574574,	NULL,	'active',	'2019-10-08 15:10:43');
 
--- 2019-10-08 10:27:13
+-- 2019-10-08 16:12:44

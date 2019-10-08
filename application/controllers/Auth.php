@@ -23,46 +23,29 @@ class Auth extends REST_Controller  {
     ################### Login Function Starts #########################
     public function login_post()
     {
+         $postdata = file_get_contents("php://input");
+         $Post = json_decode($postdata);
 
         $users = $this->auth->getusers();
-        $token = trim($this->post('token'));
-        $email = trim($this->post('email'));
-        $password = md5($this->post('password'));
-
-        if($token == NULL)
-        {
-            // Invalid token, set the response and exit.
-           $this->response([
-                    'status' => FALSE,
-                    'message' => 'Invalid Access Token'
-                ], REST_Controller::HTTP_OK); 
-        }
+        $email = trim($Post->email);
+        $password = md5($Post->password);
 
         //Check email and password NULL
         if ($email == NULL || $password == NULL)
         {
-            $this->response(NULL, REST_Controller::HTTP_OK); 
-        }
-
-        //Check the token exists in database or not
-        $tokencheck = $this->auth->check_token($token);
-        if(!$tokencheck)
-        {
-            // Invalid token, set the response and exit.
-            $this->response([
-                    'status' => FALSE,
-                    'message' => 'Invalid Access Token'
-                ], REST_Controller::HTTP_OK); 
+            $this->response([ 'status' => FALSE,
+                             'message' => 'Please fill all details',
+                            ], REST_Controller::HTTP_OK); 
         }
 
         //Check username exists in database or not
-        $emailcheck = $this->auth->check_username($email);
+        $emailcheck = $this->auth->check_email($email);
         if(!$emailcheck)
         {
             // Invalid token, set the response and exit.
             $this->response([
                     'status' => FALSE,
-                    'message' => 'User not found'
+                    'message' => 'You are not authorize person'
                 ], REST_Controller::HTTP_OK); 
         }
 
@@ -83,7 +66,7 @@ class Auth extends REST_Controller  {
                 'user_id'   => $loginuser[0]->id,
                 'status'    => 'active'
                 );
-            $this->auth->update_loginkey($token,$updatekey);
+            //$this->auth->update_loginkey($token,$updatekey);
             $this->set_response([
                     'status'    => TRUE,
                     'message'   => 'Login Successfull',
@@ -102,17 +85,20 @@ class Auth extends REST_Controller  {
         $postdata = file_get_contents("php://input");
         $Post = json_decode($postdata);
 
-		if($Post->Email!='' && $Post->Password!='')
+		if($Post->email!='' && $Post->password!='' && $Post->full_name!='' && $Post->phone!='')
 		{
-			$CheckMail = $this->auth->check_email($Post->Email);
+			$CheckMail = $this->auth->check_email($Post->email);
             
 			if($CheckMail==0)
 			{
+                $CheckPhone = $this->auth->check_phone($Post->phone);
+                if($CheckPhone==0)
+                {
                     $adduser = [
-                        'password' => md5($Post->Password),
-                        'firstname' => $Post->Username,
-                        'lastname' => $Post->Lastname.$Post->Firstname,
-                        'email' => $Post->Email,
+                        'full_name' => $Post->full_name,
+                        'email' => $Post->email,
+                        'phone' => $Post->phone,
+                        'password' => md5($Post->password),
                         'status' => 'active',
                         'created_on' => date('Y-m-d H:i:s')
                     ];
@@ -131,6 +117,14 @@ class Auth extends REST_Controller  {
                                 'message' => 'User Not Created'
                             ], REST_Controller::HTTP_OK); 
                     }
+                } else {
+
+                    $this->response([
+                            'status' => FALSE,
+                            'message' => 'This Phone No. has already Exists'
+                        ], REST_Controller::HTTP_OK); 
+
+                }
 		      } else {
 		
         				$this->response([
@@ -141,7 +135,7 @@ class Auth extends REST_Controller  {
 		      } } else {
 									$this->response([
                                         'status' => FALSE,
-                                        'message' => 'Please Fill Email & Password'
+                                        'message' => 'Please Fill all fields'
                                     ], REST_Controller::HTTP_OK); 
 			
 		      }
